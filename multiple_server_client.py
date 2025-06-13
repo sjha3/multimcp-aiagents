@@ -18,7 +18,6 @@ class MultiMCPClient:
 
     
     async def start_chat(self):
-        print("**** Starting chat ****")
         load_dotenv(override=True)  # Load environment variables from .env file
         await self.agent_team.create_team()
         #print(self.tools_)                

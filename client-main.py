@@ -7,7 +7,6 @@ from multiple_server_client import MultiMCPClient
 async def main():
     client = MultiMCPClient()    
     try: 
-        print("Start chat...")
         await client.start_chat()
     except Exception as e:
         print(f"Error connecting to server: {e}")

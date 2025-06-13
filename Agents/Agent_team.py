@@ -35,7 +35,6 @@ class AgentTeam:
             agent_tool = Agent_with_tools(server, self.model_client)
             await agent_tool.create_agent()
             if agent_tool.agent is not None:
-                print(f" {__file__}**** Agent created: {agent_tool.agent.name} ****")
                 self.agents.append(agent_tool.agent)
             
         planning_agent = AssistantAgent(
@@ -76,7 +75,7 @@ class AgentTeam:
             Always end your response with 'TERMINATE' to indicate the conversation is complete.
             """,
         )
-        print("**** Created response_agent and planning_agent ****")
+
         self.agents.append(planning_agent)
         self.agents.append(response_agent)
         print("**** All Agents created successfully ****", self.agents)
@@ -89,7 +88,6 @@ class AgentTeam:
             if messages[-1].source != planning_agent.name:
                 return planning_agent.name
             return None
-        print("**** Selector function created ****")
         
         self.team = SelectorGroupChat(self.agents,
                                  model_client=self.model_client, 

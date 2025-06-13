@@ -19,15 +19,14 @@ This module will simply create an agent with tools exposed by the MCP servers.
 '''
 class Agent_with_tools():
     
-    def __init__(self, mcp_server_config:dict, model_client: AzureOpenAIChatCompletionClient):        
-        print("Azure end point:", os.getenv("azure_endpoint"))
+    def __init__(self, mcp_server_config:dict, model_client: AzureOpenAIChatCompletionClient):
         self.server_config = mcp_server_config
         self.tools = []
         self.model_client = model_client
         self.agent = None
 
     async def create_agent(self):
-        print("**** Creating agent with tools from MCP server ****", self.server_config)
+        print("**** Create agent :  ****", self.server_config["name"])
         text_mention_termination = TextMentionTermination("TERMINATE")
         max_messages_termination = MaxMessageTermination(25)
         termination = text_mention_termination | max_messages_termination
@@ -39,15 +38,13 @@ class Agent_with_tools():
                     read_timeout_seconds=30
             )
             self.tools = await mcp_server_tools(server_params_autogen)
-            print("==== Got tools from MCP server:", self.tools)
             self.agent = AssistantAgent(
                 name = self.server_config["name"],
                 model_client = self.model_client,
                 system_message= self.server_config["system_message"],
                 tools = self.tools
             )
-            print("**** Created agent :  ****", self.server_config["name"])
-            return self.agent
+            print("**** Created agent :  ****", self.server_config["name"])            
         
         except Exception as e:
             print(f"Error creating agent: {self.server_config} \n {e}")
