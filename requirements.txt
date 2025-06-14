@@ -18,3 +18,4 @@ autogen-ext
 autogen-core
 autogen-ext[mcp]
 fastmcp
+robin_stocks
