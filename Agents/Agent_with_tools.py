@@ -3,7 +3,7 @@ from autogen_agentchat.agents import AssistantAgent
 from autogen_core import CancellationToken
 from autogen_agentchat.ui import Console
 from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
-import os
+import os, traceback
 from dotenv import load_dotenv
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermination
@@ -34,7 +34,7 @@ class Agent_with_tools():
             server_params_autogen = StdioServerParams(
                     command=self.server_config["command"],
                     args=self.server_config["args"],
-                    env=None,
+                    env=self.server_config["env"],
                     read_timeout_seconds=30
             )
             self.tools = await mcp_server_tools(server_params_autogen)
@@ -48,6 +48,7 @@ class Agent_with_tools():
         
         except Exception as e:
             print(f"Error creating agent: {self.server_config} \n {e}")
+            traceback.print_exc()
             return None
         
         

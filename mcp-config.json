@@ -4,6 +4,7 @@
             "name" : "StockPortfolioManager",
             "command": "python",
             "args": ["rh_mcp_server.py"],
+            "env": {"DEBUG": "true"},
             "system_message": "You are a stock portfolio manager agent which helps maintain my robinhood stock portfolio\nYou should be able to get stock portfolio in my account, the current price of a stock, buy and sell stocks, and get the portfolio value\n" 
         },
         "review_mcp": {
@@ -13,10 +14,25 @@
             "env": {"DEBUG": "true"},
             "system_message": "You are a helpful agent which manages review object\nYou should be able to create a review and get details of a review\n To get all the reviews, use kusto query as GetReviewsTest \nSchema of the review object is as follows:\n ReviewId: Unique identifier for the review \nReviewName: Name of the review\nWorkloadId: Unique identifier for the workload associated with the review\nWorkloadName: Name of the workload associated with the review\nOwner: Email of the owner of the review\nModifiedOn: Timestamp of when the review was last modified\nIsDelete: Boolean indicating if the review is deleted"
         },
+        "brave-search": {
+            "name" : "WebSearch",
+            "command": "npx",
+            "args": [
+                "-y", 
+                "@modelcontextprotocol/server-brave-search"
+            ],
+            "env": {
+                "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
+            },
+            "disabled": false,
+            "alwaysAllow": [],
+            "system_message": "You are a helpful agent which helps in searching web and finding relevant information through web search"
+        },
         "playwright": {
             "name" : "Playwright",
             "command": "npx",
             "args": ["@playwright/mcp@latest"],
+            "env": {"DEBUG": "true"},
             "system_message": "You are a helpful agent which helps in getting data from web urls\nYou should be able to extract data from web pages and return it in a structured format\nTo get the data, use the Playwright API to navigate to the URL and extract the required information" 
         }
     }

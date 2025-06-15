@@ -3,9 +3,11 @@ import asyncio,sys
 from multiple_server_client import MultiMCPClient
 
 #from Agents import review_agent, finance_agent
+from dotenv import load_dotenv
 
 async def main():
-    client = MultiMCPClient()    
+    client = MultiMCPClient()  
+    load_dotenv(override=True)  # Load environment variables from .env file 
     try: 
         await client.start_chat()
     except Exception as e:

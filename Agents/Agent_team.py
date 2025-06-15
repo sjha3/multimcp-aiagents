@@ -10,7 +10,7 @@ from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
 from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermination
 from autogen_agentchat.ui import Console
 from typing import Sequence
-import os
+import os, traceback
 from dotenv import load_dotenv
 
 class AgentTeam:
