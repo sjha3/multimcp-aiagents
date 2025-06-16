@@ -36,33 +36,6 @@ class AgentTeam:
             await agent_tool.create_agent()
             if agent_tool.agent is not None:
                 self.agents.append(agent_tool.agent)
-            
-        planning_agent = AssistantAgent(
-            "PlanningAgent",
-            model_client=self.model_client,
-            description="""
-                An agent that plans tasks based on user requests.
-                It should break down tasks and delegate them to appropriate agents.
-                """,
-            system_message=
-                """
-                    You are a planning agent. 
-                    Your task is to break down user requests into smaller tasks and delegate them to appropriate agents.
-                    Your team members are
-                    - FileAgent: Acts on csv and oarquet files
-                    - FinanceAgent: Provides financial data of stocks.
-                    - ReviewAgent: Manages review objects.                    
-                    - ResponseAgent: Responsible for responding to the user with the final response.
-                    
-                    You only plan and delegate tasks, you do not execute them.
-                    
-                    When assignning tasks to agents, use the following format:
-                    1. <agent>: <task>
-                    
-                    Once a task is completed by another agent, delegate the response to the **ResponseAgent**
-                    to format and send the final response to the user.
-                """,
-        )
         
         response_agent = AssistantAgent(
             name="ResponseAgent",
@@ -75,6 +48,36 @@ class AgentTeam:
             Always end your response with 'TERMINATE' to indicate the conversation is complete.
             """,
         )
+        
+        planning_agent = AssistantAgent(
+            "PlanningAgent",
+            model_client=self.model_client,
+            description="""
+                An agent that plans tasks based on user requests.
+                It should break down tasks and delegate them to appropriate agents.
+                """,
+            system_message=
+                """
+                    You are a planning agent. 
+                    Your task is to break down user requests into smaller tasks and delegate them to appropriate agents.
+                    Your team members are
+                    - StockPortfolioManager: Manager of stock portfolio in robinhood.
+                    - WebSearch: Performs web searches to gather information.
+                    - ReviewAgent: Manages review objects.    
+                    - PlaywrightAgent: Performs web automation tasks using Playwright.                
+                    - ResponseAgent: Responsible for responding to the user with the final response.
+                    
+                    You only plan and delegate tasks, you do not execute them.
+                    
+                    When assignning tasks to agents, use the following format:
+                    1. <agent>: <task>
+                    
+                    Once a task is completed by another agent, delegate the response to the **ResponseAgent**
+                    to format and send the final response to the user.
+                """,
+        )
+        
+        
 
         self.agents.append(planning_agent)
         self.agents.append(response_agent)
