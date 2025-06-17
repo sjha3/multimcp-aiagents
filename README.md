@@ -1,6 +1,6 @@
 # Multi Agent System with Multiple MCP Servers
 
-This project showcases a Multi Agent System which connects to multiple MCP servers and brings the power of multiple MCPs to a single application.
+This project creates a framework of Multi Agent System which connects to multiple MCP servers and brings the power of multiple MCPs to a single application.
 
 ## Features
 
@@ -47,3 +47,7 @@ This project showcases a Multi Agent System which connects to multiple MCP serve
 
 This will bring up a prompt where you can chat with the AI agents.  
 Based on your question, the appropriate agent will be invoked and the requested operation will be performed automatically.
+
+## Adding More MCP Servers
+
+To add another MCP server, simply update `mcp-config.json` with the new MCP server configuration. This will automatically create a new agent and assign the tools of this MCP server to the agent.
