@@ -15,6 +15,7 @@ This project creates a framework of Multi Agent System which connects to multipl
     - **External MCP servers:**  
       - Brave Search MCP: Search the internet  
       - Playwright MCP
+      - Hotel Search MCP
 - **Client Application:**  
   - Connects to both local and external MCP servers.
 - **Team of Autogen AI Agents:**  
@@ -39,8 +40,13 @@ This project creates a framework of Multi Agent System which connects to multipl
     ```sh
     python reviews_mcp_server.py
     ```
+  
+4. **Run Hotel Search MCP:**
+    ```sh
+    mcp-hotel-search
+    ```
 
-4. **Run the MCP client:**
+5. **Run the MCP client:**
     ```sh
     python client-main.py
     ```

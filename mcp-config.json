@@ -22,18 +22,25 @@
                 "@modelcontextprotocol/server-brave-search"
             ],
             "env": {
-                "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
+                "BRAVE_API_KEY": "BRAVE_API_KEY"
             },
             "disabled": false,
             "alwaysAllow": [],
             "system_message": "You are a helpful agent which helps in searching web and finding relevant information through web search"
+        },
+        "HotelSearch": {
+            "name" : "HotelSearchAgent",
+            "command": "mcp-hotel-search",
+            "args" : ["--connection_type", "stdio"],
+            "env": {"SERP_API_KEY": "SERP_API_KEY"},
+            "system_message": "You are a helpful agent which helps in searching hotels based on user queries\nYou should be able to search hotels based on user queries and return the results in a structured format\nTo get the data, use the SERP API to search for hotels and return the results" 
         },
         "playwright": {
             "name" : "Playwright",
             "command": "npx",
             "args": ["@playwright/mcp@latest"],
             "env": {"DEBUG": "true"},
-            "system_message": "You are a helpful agent which helps in getting data from web urls\nYou should be able to extract data from web pages and return it in a structured format\nTo get the data, use the Playwright API to navigate to the URL and extract the required information" 
+            "system_message": "You are a helpful agent which helps in getting data from web urls\n You should be able to extract data from web pages and return it in a structured format\nTo get the data, use the Playwright API to navigate to the URL and extract the required information" 
         }
     }
 }

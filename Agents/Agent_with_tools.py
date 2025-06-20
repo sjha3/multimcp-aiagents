@@ -26,7 +26,7 @@ class Agent_with_tools():
         self.agent = None
 
     async def create_agent(self):
-        print("**** Create agent :  ****", self.server_config["name"])
+        #print("**** Create agent :  ****", self.server_config["name"])
         text_mention_termination = TextMentionTermination("TERMINATE")
         max_messages_termination = MaxMessageTermination(25)
         termination = text_mention_termination | max_messages_termination
@@ -44,7 +44,7 @@ class Agent_with_tools():
                 system_message= self.server_config["system_message"],
                 tools = self.tools
             )
-            print("**** Created agent :  ****", self.server_config["name"])            
+            print("**** Successfully Created agent : ", self.server_config["name"])            
         
         except Exception as e:
             print(f"Error creating agent: {self.server_config} \n {e}")

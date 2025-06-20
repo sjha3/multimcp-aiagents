@@ -62,8 +62,9 @@ class AgentTeam:
                     Your task is to break down user requests into smaller tasks and delegate them to appropriate agents.
                     Your team members are
                     - StockPortfolioManager: Manager of stock portfolio in robinhood.
-                    - WebSearch: Performs web searches to gather information.
-                    - ReviewAgent: Manages review objects.    
+                    - ReviewAgent: Manages review objects.   
+                    - HotelSearchAgent : Use it to search for hotels only.
+                    - WebSearch : Use it to perform web searches.
                     - PlaywrightAgent: Performs web automation tasks using Playwright.                
                     - ResponseAgent: Responsible for responding to the user with the final response.
                     
